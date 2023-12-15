@@ -1,10 +1,16 @@
 /* Based on Josh W. Comeau's custom CSS reset: https://www.joshwcomeau.com/css/custom-css-reset/ */
 
 :root {
-	--primary: #5c73c4;
-	--primary-dark: #1d4ed8;
-	--secondary: #a7393d;
-	--secondary-dark: #7c2d32;
+	--primary10: #0d0e0b;
+	--primary20: #2b2b2b;
+	--primary30: #696969;
+	--primary40: #848484;
+	--primary50: #a0a0a0;
+	--primary60: #b7b8b6;
+	--primary70: #c9cac8;
+	--primary80: #eeeeee;
+	--primary90: #fcfcfc;
+	--primary100: #ffffff;
 }
 
 /* Use a more-intuitive box-sizing model.*/
@@ -28,7 +34,7 @@ body {
 	line-height: 1.5;
 	-webkit-font-smoothing: antialiased;
 	font-family: 'Courier New', Courier, 'Lucida Sans Typewriter', 'Lucida Typewriter', monospace;
-	background-color: aliceblue;
+	background-color: var(--primary80);
 }
 
 /* Improve media defaults */
