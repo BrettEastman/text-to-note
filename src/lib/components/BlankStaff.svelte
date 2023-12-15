@@ -9,8 +9,7 @@
 	export let height = 200;
 	export let addDoubleBarLine = false;
 	export let numBars = 4;
-
-	// let container;
+	export let instructions = '';
 
 	let vf;
 
@@ -23,11 +22,6 @@
 		updateWidthInfo();
 		drawStaff();
 	});
-
-	// afterUpdate(() => {
-	// 	updateWidthInfo();
-	// 	drawStaff();
-	// });
 
 	function updateWidthInfo() {
 		width = window.innerWidth;
@@ -67,13 +61,21 @@
 	}
 </script>
 
-<div id="music-notation" />
-
-<!-- <div bind:this={container} /> -->
+<div class="stack">
+	<p>{instructions}</p>
+	<div id="music-notation" />
+</div>
 
 <style>
 	div {
 		width: 100%;
 		height: 100%;
+	}
+	.stack {
+		display: flex;
+		flex-direction: column;
+	}
+	p {
+		margin-left: 1.5rem;
 	}
 </style>

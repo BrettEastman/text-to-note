@@ -1,12 +1,59 @@
 <script>
-	import BlankStaffExp from '$lib/components/BlankStaffExp.svelte';
 	import BlankStaff from '$lib/components/BlankStaff.svelte';
-	import VexFlowExample from '$lib/components/VexFlowExample.svelte';
-	import Misc from '$lib/components/Misc.svelte';
 </script>
 
-<main>
-	<h1>Page +</h1>
-	<BlankStaffExp numBars={7} addDoubleBarLine={true} />
-	<BlankStaff numBars={7} addDoubleBarLine={true} />
+<main class="stack">
+	<h1>LAFSMW Theory Test</h1>
+	<div>
+		<label class="levels" for="level-select"> Choose your Level IV class preference: </label>
+
+		<select name="levels" id="level-select">
+			<option value="">Please choose an option</option>
+			<option value="advanced-theory">Advanced theory</option>
+			<option value="advanced-improvisation"> Advanced improvisation </option>
+			<option value="intro-to-arranging">Intro to arranging</option>
+			<option value="intermediate-arranging"> Intermediate arranging </option>
+			<option value="advanced-arranging">Advanced arranging</option>
+			<option value="rhythm-class">Rhythm class</option>
+			<option value="sibelius-class">Sibelius class</option>
+		</select>
+	</div>
+	<div class="stack">
+		<div>
+			<BlankStaff
+				numBars={4}
+				addDoubleBarLine={true}
+				instructions={'Write the following key signatures'}
+			/>
+		</div>
+		<div>
+			<BlankStaff
+				numBars={4}
+				addDoubleBarLine={true}
+				instructions={'Identify the following key signatures'}
+			/>
+		</div>
+		<div>
+			<BlankStaff numBars={2} instructions={'Write the following scales'} />
+			<BlankStaff numBars={2} noTimeSignature={true} />
+			<BlankStaff numBars={2} noTimeSignature={true} addDoubleBarLine={true} />
+		</div>
+	</div>
 </main>
+
+<style>
+	.stack {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+	.levels {
+		margin-left: 1rem;
+		margin-top: 1rem;
+		font-size: 1.25rem;
+		text-align: center;
+	}
+	.instruction {
+		margin-left: 1.5rem;
+	}
+</style>
