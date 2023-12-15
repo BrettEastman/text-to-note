@@ -28,6 +28,7 @@
 				instructions={'Write the following key signatures'}
 			/>
 		</div>
+
 		<div>
 			<h2>Identify the following 7th chords:</h2>
 			<StaffChords addDoubleBarLine={true} numBars={7} chords={seventhChords} />
