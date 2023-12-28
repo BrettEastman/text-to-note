@@ -1,6 +1,5 @@
 <script>
-	import BlankStaff from '$lib/components/BlankStaff.svelte';
-	import StaffChords from '$lib/components/StaffChords.svelte';
+	import Staff from '$lib/components/Staff.svelte';
 	import seventhChords from '$lib/seventhChords';
 </script>
 
@@ -22,7 +21,7 @@
 	</div>
 	<div class="stack">
 		<div>
-			<BlankStaff
+			<Staff
 				numBars={4}
 				addDoubleBarLine={true}
 				instructions={'Write the following key signatures'}
@@ -31,19 +30,19 @@
 
 		<div>
 			<h2>Identify the following 7th chords:</h2>
-			<StaffChords addDoubleBarLine={true} numBars={7} chords={seventhChords} />
+			<Staff addDoubleBarLine={true} numBars={7} chords={seventhChords} />
 		</div>
 		<div>
-			<BlankStaff
+			<Staff
 				numBars={4}
 				addDoubleBarLine={true}
 				instructions={'Identify the following key signatures'}
 			/>
 		</div>
 		<div>
-			<BlankStaff numBars={2} instructions={'Write the following scales'} />
-			<BlankStaff numBars={2} noTimeSignature={true} />
-			<BlankStaff numBars={2} noTimeSignature={true} addDoubleBarLine={true} />
+			<Staff numBars={2} instructions={'Write the following scales'} />
+			<Staff numBars={2} noTimeSignature={true} />
+			<Staff numBars={2} noTimeSignature={true} addDoubleBarLine={true} />
 		</div>
 	</div>
 </main>

@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { onMount, afterUpdate } from 'svelte';
-	import Vex from 'vexflow';
-	// import { Chord } from '$lib/types';
+	import { Flow } from 'vexflow';
 
 	export let clef = 'treble';
 	export let timeSignature = '4/4';
@@ -12,17 +11,6 @@
 	export let numBars = 4;
 	export let instructions = '';
 	export let chords: string[] = [];
-
-	// type StaffProps = {
-	// 	clef?: string;
-	// 	timeSignature?: string;
-	// 	noTimeSignature?: boolean;
-	// 	width?: number;
-	// 	height?: number;
-	// 	addDoubleBarLine?: boolean;
-	// 	numBars?: number;
-	// 	chords?: Chord[];
-	// };
 
 	let vf;
 
@@ -44,19 +32,24 @@
 	}
 
 	function drawStaff() {
-		vf = new Vex.Flow.Factory({
+		vf = new Flow.Factory({
 			renderer: { elementId: 'music-notation', width, height } // Use container directly without container.id
 		});
 
-		const { Renderer, Stave, StaveNote, Accidental, Formatter } = Vex.Flow;
+		const { Renderer, Stave, StaveNote, Accidental, Formatter } = Flow;
 		const rendererContext = vf.getContext();
 		rendererContext.setFont('Arial', 10);
+
+		const spaceAboveStaff = {
+			space_above_staff_ln: -0.5
+		};
 
 		for (let i = 0; i < numBars; i++) {
 			const stave = new Stave(
 				i === 0 ? 17 : widthOfFirstBar + (i - 1) * widthOfRemainingBars + 17,
 				40,
-				i === 0 ? widthOfFirstBar : widthOfRemainingBars
+				i === 0 ? widthOfFirstBar : widthOfRemainingBars,
+				spaceAboveStaff
 			);
 
 			if (i === 0) {
@@ -69,19 +62,21 @@
 
 			stave.setContext(rendererContext).draw();
 
-			// Create each chord as a StaveNote.
-			let notesMeasure = [new StaveNote(chords[i])];
+			if (chords.length > 0) {
+				// Create each chord as a StaveNote.
+				let notesMeasure = [new StaveNote(chords[i])];
 
-			// Determine if any accidentals are needed for the current chord.
-			let noteGroupAccidentals = noteGroupAccidentalsCheck(chords[i].keys);
+				// Determine if any accidentals are needed for the current chord.
+				let noteGroupAccidentals = noteGroupAccidentalsCheck(chords[i].keys);
 
-			// Add accidentals to notes of each chord as needed.
-			noteGroupAccidentals.forEach((accidental) => {
-				notesMeasure[0].addModifier(new Accidental(accidental[0]), accidental[1]);
-			});
+				// Add accidentals to notes of each chord as needed.
+				noteGroupAccidentals.forEach((accidental) => {
+					notesMeasure[0].addModifier(new Accidental(accidental[0]), accidental[1]);
+				});
 
-			// Format and draw the chord on the current stave.
-			Formatter.FormatAndDraw(rendererContext, stave, notesMeasure);
+				// Format and draw the chord on the current stave.
+				Formatter.FormatAndDraw(rendererContext, stave, notesMeasure);
+			}
 		}
 	}
 
