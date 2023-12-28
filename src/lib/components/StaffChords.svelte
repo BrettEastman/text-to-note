@@ -1,23 +1,35 @@
-<script>
+<script lang="ts">
 	import { onMount, afterUpdate } from 'svelte';
 	import Vex from 'vexflow';
+	// import { Chord } from '$lib/types';
 
 	export let clef = 'treble';
 	export let timeSignature = '4/4';
 	export let noTimeSignature = false;
 	export let width = 1650;
-	export let height = 200;
+	export let height = 110;
 	export let addDoubleBarLine = false;
 	export let numBars = 4;
 	export let instructions = '';
-	export let chords = [];
+	export let chords: string[] = [];
+
+	// type StaffProps = {
+	// 	clef?: string;
+	// 	timeSignature?: string;
+	// 	noTimeSignature?: boolean;
+	// 	width?: number;
+	// 	height?: number;
+	// 	addDoubleBarLine?: boolean;
+	// 	numBars?: number;
+	// 	chords?: Chord[];
+	// };
 
 	let vf;
 
 	// Gather needed width info.
-	let fullWidth;
-	let widthOfFirstBar;
-	let widthOfRemainingBars;
+	let fullWidth: number;
+	let widthOfFirstBar: number;
+	let widthOfRemainingBars: number;
 
 	onMount(() => {
 		updateWidthInfo();
