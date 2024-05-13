@@ -5,5 +5,5 @@
 
 <main>
 	<h1>Page +</h1>
-	<Staff numBars={12} addDoubleBarLine={true} />
+	<Staff numBars={6} addDoubleBarLine={true} />
 </main>
